@@ -15,7 +15,6 @@ class SignupVC: UIViewController {
     
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         return  button
     }()
@@ -24,7 +23,6 @@ class SignupVC: UIViewController {
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
         return textField
@@ -34,7 +32,6 @@ class SignupVC: UIViewController {
     let usernameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Username"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
         return textField
@@ -44,7 +41,6 @@ class SignupVC: UIViewController {
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Password"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.isSecureTextEntry = true
@@ -54,7 +50,6 @@ class SignupVC: UIViewController {
     
     let signupButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Sing Up", for: .normal)
         button.backgroundColor = UIColor.appColor(.lightBlue)
         button.layer.cornerRadius = 5
@@ -90,7 +85,6 @@ extension SignupVC {
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         
         stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeading: 40, paddingBottom: 0, paddingTrailing: 40, paddingCenterX: 0, paddingCenterY: 0, width: 0, height: 200)
