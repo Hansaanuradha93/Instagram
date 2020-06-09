@@ -12,12 +12,14 @@ class SignupVC: UIViewController {
         return viewController
     }
     
+    
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         return  button
     }()
+    
     
     let emailTextField: UITextField = {
         let textField = UITextField()
@@ -28,6 +30,7 @@ class SignupVC: UIViewController {
         return textField
     }()
     
+    
     let usernameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Username"
@@ -36,6 +39,7 @@ class SignupVC: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 14)
         return textField
     }()
+    
     
     let passwordTextField: UITextField = {
         let textField = UITextField()
@@ -46,6 +50,7 @@ class SignupVC: UIViewController {
         textField.isSecureTextEntry = true
         return textField
     }()
+    
     
     let signupButton: UIButton = {
         let button = UIButton(type: .system)
@@ -59,19 +64,23 @@ class SignupVC: UIViewController {
     }()
     
     
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         
-        
-        view.addSubview(plusPhotoButton)
-        
-        NSLayoutConstraint.activate([
-            plusPhotoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            plusPhotoButton.widthAnchor.constraint(equalToConstant: 140),
-            plusPhotoButton.heightAnchor.constraint(equalToConstant: 140)
-        ])
+        configureViewController()
+        configurePlusPhotoButton()
+        configureTextFields()
+    }
+}
+
+// MARK: - Methods
+extension SignupVC {
+    
+    fileprivate func configureViewController() { view.backgroundColor = .white }
+    
+    
+    fileprivate func configureTextFields() {
         
         view.addSubview(emailTextField)
         view.addSubview(usernameTextField)
@@ -84,11 +93,14 @@ class SignupVC: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            stackView.heightAnchor.constraint(equalToConstant: 200)
-        ])
+        stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeading: 40, paddingBottom: 0, paddingTrailing: 40, paddingCenterX: 0, paddingCenterY: 0, width: 0, height: 200)
+    }
+    
+    
+    fileprivate func configurePlusPhotoButton() {
+        
+        view.addSubview(plusPhotoButton)
+        
+        plusPhotoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeading: 0, paddingBottom: 0, paddingTrailing: 0, paddingCenterX: 0, paddingCenterY: 0, width: 140, height: 140)
     }
 }
