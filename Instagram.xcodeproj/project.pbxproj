@@ -35,6 +35,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4755888A248F3D0C00CA7486 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4755888C248F3D6600CA7486 /* Login */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4755888B248F3D1C00CA7486 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				47CC423D248E9AC4008266E6 /* AppDelegate.swift */,
+				47CC423F248E9AC4008266E6 /* SceneDelegate.swift */,
+				47CC4246248E9AC5008266E6 /* Assets.xcassets */,
+				47CC4248248E9AC5008266E6 /* LaunchScreen.storyboard */,
+				47CC424B248E9AC5008266E6 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		4755888C248F3D6600CA7486 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				47CC4241248E9AC4008266E6 /* ViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		47CC4231248E9AC4008266E6 = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +82,8 @@
 		47CC423C248E9AC4008266E6 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				47CC423D248E9AC4008266E6 /* AppDelegate.swift */,
-				47CC423F248E9AC4008266E6 /* SceneDelegate.swift */,
-				47CC4241248E9AC4008266E6 /* ViewController.swift */,
-				47CC4246248E9AC5008266E6 /* Assets.xcassets */,
-				47CC4248248E9AC5008266E6 /* LaunchScreen.storyboard */,
-				47CC424B248E9AC5008266E6 /* Info.plist */,
+				4755888A248F3D0C00CA7486 /* Scenes */,
+				4755888B248F3D1C00CA7486 /* Support Files */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
