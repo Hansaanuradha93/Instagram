@@ -9,9 +9,7 @@ class IGButton: UIButton {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
     convenience init(backgroundColor: UIColor, title: String, image: UIImage? = nil) {
@@ -25,6 +23,7 @@ class IGButton: UIButton {
 extension IGButton {
     
     func setup(backgroundColor: UIColor, title: String, image: UIImage? = nil) {
+        
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
         self.setImage(image, for: .normal)
@@ -32,6 +31,7 @@ extension IGButton {
     
     
     private func configure() {
+        
         layer.cornerRadius = 5
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         setTitleColor(.white, for: .normal)
