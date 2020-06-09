@@ -28,6 +28,25 @@ class SignupVC: UIViewController {
         return textField
     }()
     
+    let usernameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Username"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.borderStyle = .roundedRect
+        textField.font = UIFont.systemFont(ofSize: 14)
+        return textField
+    }()
+    
+    let passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Password"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.borderStyle = .roundedRect
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -43,13 +62,21 @@ class SignupVC: UIViewController {
         ])
         
         view.addSubview(emailTextField)
+        view.addSubview(usernameTextField)
+        view.addSubview(passwordTextField)
+        
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField])
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 20),
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            emailTextField.heightAnchor.constraint(equalToConstant: 50)
+            stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            stackView.heightAnchor.constraint(equalToConstant: 200)
         ])
-        
     }
 }
