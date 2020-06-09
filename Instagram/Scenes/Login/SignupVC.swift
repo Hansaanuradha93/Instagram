@@ -2,7 +2,7 @@ import UIKit
 
 class SignupVC: UIViewController {
 
-    //MARK: Properties
+    // MARK: Properties
     var viewModel: SignupVM!
     
     
@@ -13,50 +13,11 @@ class SignupVC: UIViewController {
     }
     
     
-    let plusPhotoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
-        return  button
-    }()
-    
-    
-    let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Email"
-        textField.borderStyle = .roundedRect
-        textField.font = UIFont.systemFont(ofSize: 14)
-        return textField
-    }()
-    
-    
-    let usernameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Username"
-        textField.borderStyle = .roundedRect
-        textField.font = UIFont.systemFont(ofSize: 14)
-        return textField
-    }()
-    
-    
-    let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.borderStyle = .roundedRect
-        textField.font = UIFont.systemFont(ofSize: 14)
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    
-    
-    let signupButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Sing Up", for: .normal)
-        button.backgroundColor = UIColor.appColor(.lightBlue)
-        button.layer.cornerRadius = 5
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.white, for: .normal)
-        return button
-    }()
+    let plusPhotoButton = IGButton(backgroundColor: .white, title: "", image: #imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal))
+    let emailTextField = IGTextField(placeholder: "Email")
+    let usernameTextField = IGTextField(placeholder: "Username")
+    let passwordTextField = IGTextField(placeholder: "Password", isSecureTextEntry: true)
+    let signupButton = IGButton(backgroundColor: UIColor.appColor(.lightBlue), title: "Sign Up")
     
     
     // MARK: View Controller
