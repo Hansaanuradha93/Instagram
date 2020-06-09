@@ -14,8 +14,7 @@ class IGTextField: UITextField {
     
     convenience init(placeholder: String, isSecureTextEntry: Bool = false) {
         self.init()
-        self.placeholder = placeholder
-        self.isSecureTextEntry = isSecureTextEntry
+        setup(placeholder: placeholder, isSecureTextEntry: isSecureTextEntry)
     }
 }
 
@@ -23,10 +22,17 @@ class IGTextField: UITextField {
 // MARK: - Methods
 extension IGTextField {
     
+    
+    func setup(placeholder: String, isSecureTextEntry: Bool) {
+        
+        self.placeholder = placeholder
+        self.isSecureTextEntry = isSecureTextEntry
+    }
+    
+    
     private func configure() {
         
         borderStyle = .roundedRect
-        
         textColor = .label
         tintColor = .label
         font = UIFont.systemFont(ofSize: 14)
