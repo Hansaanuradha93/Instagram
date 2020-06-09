@@ -1,30 +1,20 @@
-//
-//  SignupVC.swift
-//  Instagram
-//
-//  Created by Hansa Anuradha on 6/9/20.
-//  Copyright © 2020 Hansa Anuradha. All rights reserved.
-//
-
 import UIKit
 
 class SignupVC: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    //MARK: Properties
+    var viewModel: SignupVM!
+    
+    
+    static func create(viewModel: SignupVM) -> SignupVC {
+        let viewController = SignupVC()
+        viewController.viewModel = viewModel
+        return viewController
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .red
     }
-    */
-
 }
