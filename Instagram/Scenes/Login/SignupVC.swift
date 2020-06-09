@@ -17,7 +17,7 @@ class SignupVC: UIViewController {
     let emailTextField = IGTextField(placeholder: "Email")
     let usernameTextField = IGTextField(placeholder: "Username")
     let passwordTextField = IGTextField(placeholder: "Password", isSecureTextEntry: true)
-    let signupButton = IGButton(backgroundColor: UIColor.appColor(.lightBlue), title: "Sign Up")
+    let signupButton = IGButton(backgroundColor: UIColor.appColor(.blue), title: "Sign Up")
     
     
     // MARK: View Controller
