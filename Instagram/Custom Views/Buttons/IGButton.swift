@@ -22,7 +22,7 @@ class IGButton: UIButton {
 // MARK: - Methods
 extension IGButton {
     
-    func setup(backgroundColor: UIColor, title: String, image: UIImage? = nil, isEnabled: Bool = true) {
+    func setup(backgroundColor: UIColor, title: String, image: UIImage?, isEnabled: Bool) {
         
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
@@ -34,6 +34,8 @@ extension IGButton {
     private func configure() {
         
         layer.cornerRadius = 5
+        layer.masksToBounds = false
+        clipsToBounds = true
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         setTitleColor(.white, for: .normal)
     }

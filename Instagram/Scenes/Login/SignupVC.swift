@@ -24,10 +24,15 @@ class SignupVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureViewController()
         configurePlusPhotoButton()
         configureTextFields()
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupPlusPhotoButton()
     }
 }
 
@@ -49,6 +54,7 @@ extension SignupVC {
         }
     }
     
+    
     @objc fileprivate func handleSignUp() {
         
         guard let email = emailTextField.text, !email.isEmpty,
@@ -67,6 +73,10 @@ extension SignupVC {
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true)
     }
+    
+    
+    fileprivate func setupPlusPhotoButton() { plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2 }
+
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -114,10 +124,11 @@ extension SignupVC {
     
     
     fileprivate func configurePlusPhotoButton() {
+
+        plusPhotoButton.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         
         view.addSubview(plusPhotoButton)
         
         plusPhotoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeading: 0, paddingBottom: 0, paddingTrailing: 0, paddingCenterX: 0, paddingCenterY: 0, width: 140, height: 140)
-        plusPhotoButton.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
     }
 }
