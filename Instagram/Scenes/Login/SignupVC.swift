@@ -77,15 +77,13 @@ extension SignupVC {
     
     fileprivate func configureTextFields() {
         
-        view.addSubview(emailTextField)
-        view.addSubview(usernameTextField)
-        view.addSubview(passwordTextField)
+        view.addSubviews(emailTextField, usernameTextField, passwordTextField)
         
         let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signupButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
-        view.addSubview(stackView)
+        view.addSubviews(stackView)
         
         stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeading: 40, paddingBottom: 0, paddingTrailing: 40, paddingCenterX: 0, paddingCenterY: 0, width: 0, height: 200)
         
