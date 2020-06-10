@@ -28,12 +28,6 @@ class SignupVC: UIViewController {
         configureViewController()
         configurePlusPhotoButton()
         configureTextFields()
-        
-        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        emailTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
-        usernameTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
-
     }
 }
 
@@ -62,16 +56,21 @@ extension SignupVC {
             let password = passwordTextField.text, !password.isEmpty
             else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Authentication failed with error: \(error)")
-                return
+        signInWith(email: email, password: password)
+    }
+    
+    
+    fileprivate func signInWith(email: String, password: String) {
+        
+        viewModel.signInWith(email: email, password: password) { status in
+            if status {
+                // User signed in
+            } else {
+                // Error signed in
             }
-            print("Authentication successful: \(authResult?.user.refreshToken ?? "")")
         }
     }
+    
     
     fileprivate func configureViewController() { view.backgroundColor = .white }
     
@@ -89,6 +88,10 @@ extension SignupVC {
         view.addSubview(stackView)
         
         stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeading: 40, paddingBottom: 0, paddingTrailing: 40, paddingCenterX: 0, paddingCenterY: 0, width: 0, height: 200)
+        
+        emailTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
     }
     
     
@@ -97,5 +100,6 @@ extension SignupVC {
         view.addSubview(plusPhotoButton)
         
         plusPhotoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeading: 0, paddingBottom: 0, paddingTrailing: 0, paddingCenterX: 0, paddingCenterY: 0, width: 140, height: 140)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     }
 }
