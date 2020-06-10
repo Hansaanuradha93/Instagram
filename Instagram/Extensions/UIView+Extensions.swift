@@ -2,6 +2,11 @@ import UIKit
 
 extension UIView {
     
+    func addSubviews(_ views: UIView...) {
+        for view in views { addSubview(view) }
+    }
+    
+    
     func anchor(top:NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, centerX: NSLayoutXAxisAnchor?, centerY: NSLayoutYAxisAnchor?, paddingTop: CGFloat, paddingLeading: CGFloat, paddingBottom: CGFloat, paddingTrailing: CGFloat, paddingCenterX: CGFloat, paddingCenterY: CGFloat, width: CGFloat, height: CGFloat) {
         
         translatesAutoresizingMaskIntoConstraints = false
