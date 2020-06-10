@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class SignupVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class SignupVC: UIViewController {
 
     // MARK: Properties
     var viewModel: SignupVM!
@@ -66,26 +66,18 @@ extension SignupVC {
     }
     
     
-    @objc fileprivate func handlePlusPhoto() {
+    @objc fileprivate func handlePlusPhoto() { showImagePicker() }
+    
+    
+    fileprivate func setupPlusPhotoButton() { plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2 }
+    
+    
+    fileprivate func showImagePicker() {
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true)
-    }
-    
-    
-    fileprivate func setupPlusPhotoButton() { plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2 }
-
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-            plusPhotoButton.setImage(editedImage, for: .normal)
-        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage {
-            plusPhotoButton.setImage(originalImage, for: .normal)
-        }
-        dismiss(animated: true, completion: nil)
     }
     
     
@@ -130,5 +122,20 @@ extension SignupVC {
         view.addSubview(plusPhotoButton)
         
         plusPhotoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeading: 0, paddingBottom: 0, paddingTrailing: 0, paddingCenterX: 0, paddingCenterY: 0, width: 140, height: 140)
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
+extension SignupVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+            plusPhotoButton.setImage(editedImage, for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage {
+            plusPhotoButton.setImage(originalImage, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
