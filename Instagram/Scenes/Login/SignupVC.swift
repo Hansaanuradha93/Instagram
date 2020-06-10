@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class SignupVC: UIViewController {
+class SignupVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     // MARK: Properties
     var viewModel: SignupVM!
@@ -60,6 +60,25 @@ extension SignupVC {
     }
     
     
+    @objc fileprivate func handlePlusPhoto() {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+            plusPhotoButton.setImage(editedImage, for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage {
+            plusPhotoButton.setImage(originalImage, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     fileprivate func signInWith(email: String, password: String) {
         
         viewModel.signInWith(email: email, password: password) { status in
@@ -90,6 +109,7 @@ extension SignupVC {
         emailTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     }
     
     
@@ -98,6 +118,6 @@ extension SignupVC {
         view.addSubview(plusPhotoButton)
         
         plusPhotoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeading: 0, paddingBottom: 0, paddingTrailing: 0, paddingCenterX: 0, paddingCenterY: 0, width: 140, height: 140)
-        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        plusPhotoButton.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
     }
 }
