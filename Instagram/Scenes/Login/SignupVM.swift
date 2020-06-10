@@ -12,8 +12,26 @@ class SignupVM {
                 completion(false)
                 return
             }
-            print("Authentication successful: \(authResult?.user.refreshToken ?? "")")
-            completion(true)
+            
+            guard let uid = authResult?.user.uid else {
+                completion(false)
+                return
+            }
+            
+            let usernameValues = ["username": email]
+            let values = [uid: usernameValues]
+            
+            Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
+                
+                if let error = error {
+                    print("Failed to save user data, \(error)")
+                    completion(false)
+                    return
+                }
+                
+                print("Successfully saved user, \(uid)")
+                completion(true)
+            }
         }
     }
 }
