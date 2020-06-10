@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class SignupVC: UIViewController {
 
@@ -17,7 +18,7 @@ class SignupVC: UIViewController {
     let emailTextField = IGTextField(placeholder: "Email")
     let usernameTextField = IGTextField(placeholder: "Username")
     let passwordTextField = IGTextField(placeholder: "Password", isSecureTextEntry: true)
-    let signupButton = IGButton(backgroundColor: UIColor.appColor(.blue), title: "Sign Up")
+    let signupButton = IGButton(backgroundColor: UIColor.appColor(.lightBlue), title: "Sign Up", isEnabled: false)
     
     
     // MARK: View Controller
@@ -27,11 +28,50 @@ class SignupVC: UIViewController {
         configureViewController()
         configurePlusPhotoButton()
         configureTextFields()
+        
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        emailTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleInput), for: .editingChanged)
+
     }
 }
 
 // MARK: - Methods
 extension SignupVC {
+    
+    @objc fileprivate func handleInput() {
+        
+        let isFormValid = emailTextField.text?.count ?? 0 > 0 &&
+            usernameTextField.text?.count ?? 0 > 0 &&
+            passwordTextField.text?.count ?? 0 > 0
+        
+        if isFormValid {
+            signupButton.isEnabled = true
+            signupButton.backgroundColor = UIColor.appColor(.blue)
+        } else {
+            signupButton.isEnabled = false
+            signupButton.backgroundColor = UIColor.appColor(.lightBlue)
+        }
+    }
+    
+    @objc fileprivate func handleSignUp() {
+        
+        guard let email = emailTextField.text, !email.isEmpty,
+            let username = usernameTextField.text, !username.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty
+            else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Authentication failed with error: \(error)")
+                return
+            }
+            print("Authentication successful: \(authResult?.user.refreshToken ?? "")")
+        }
+    }
     
     fileprivate func configureViewController() { view.backgroundColor = .white }
     

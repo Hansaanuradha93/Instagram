@@ -12,9 +12,9 @@ class IGButton: UIButton {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    convenience init(backgroundColor: UIColor, title: String, image: UIImage? = nil) {
+    convenience init(backgroundColor: UIColor, title: String, image: UIImage? = nil, isEnabled: Bool = true) {
         self.init(frame: .zero)
-        setup(backgroundColor: backgroundColor, title: title, image: image)
+        setup(backgroundColor: backgroundColor, title: title, image: image, isEnabled: isEnabled)
     }
 }
 
@@ -22,11 +22,12 @@ class IGButton: UIButton {
 // MARK: - Methods
 extension IGButton {
     
-    func setup(backgroundColor: UIColor, title: String, image: UIImage? = nil) {
+    func setup(backgroundColor: UIColor, title: String, image: UIImage? = nil, isEnabled: Bool = true) {
         
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
         self.setImage(image, for: .normal)
+        self.isEnabled = isEnabled
     }
     
     
