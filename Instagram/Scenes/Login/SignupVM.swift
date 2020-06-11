@@ -26,18 +26,27 @@ class SignupVM {
             let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
             
             
-            
+            let storageRef = Storage.storage().reference().child("profile_image")
         
             
-            Storage.storage().reference().child("profile_image").putData(uploadData, metadata: nil) { (metaData, error) in
+            storageRef.putData(uploadData, metadata: nil) { (metaData, error) in
                 
                 if let error = error {
                     print("Image upload failed, \(error)")
                     return
                 }
                 
+                storageRef.downloadURL { (url, error) in
+                    
+                    if let error = error {
+                        print("Image download url not recieved,\(error)")
+                        return
+                    }
+                    
+                    guard let downloadUrl = url?.absoluteString else { return }
+                    print("Image uploaded successfully, \(downloadUrl)")
+                }
                 
-                print("Image uploaded successfully")
             }
 //            Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
 //
