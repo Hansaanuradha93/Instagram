@@ -83,7 +83,7 @@ extension SignupVC {
     
     fileprivate func signInWith(email: String, password: String) {
         
-        viewModel.signInWith(email: email, password: password) { status in
+        viewModel.signInWith(email: email, password: password, image: plusPhotoButton.imageView?.image) { status in
             if status {
                 // User signed in
             } else {
