@@ -18,17 +18,11 @@ class SignupVM {
                 return
             }
             
-            let usernameValues = ["username": email]
-            let values = [uid: usernameValues]
-            
-            
             guard let image = image,
             let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
             
-            
-            let storageRef = Storage.storage().reference().child("profile_image")
+            let storageRef = Storage.storage().reference().child("profile_image/\(uid)")
         
-            
             storageRef.putData(uploadData, metadata: nil) { (metaData, error) in
                 
                 if let error = error {
@@ -45,20 +39,26 @@ class SignupVM {
                     
                     guard let downloadUrl = url?.absoluteString else { return }
                     print("Image uploaded successfully, \(downloadUrl)")
+                    
+                    let usernameValues = [
+                        "username": email,
+                        "imageUrl": downloadUrl
+                    ]
+                    let values = [uid: usernameValues]
+                    
+                    Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
+
+                        if let error = error {
+                            print("Failed to save user data, \(error)")
+                            completion(false)
+                            return
+                        }
+
+                        print("Successfully saved user, \(uid)")
+                        completion(true)
+                    }
                 }
-                
             }
-//            Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
-//
-//                if let error = error {
-//                    print("Failed to save user data, \(error)")
-//                    completion(false)
-//                    return
-//                }
-//
-//                print("Successfully saved user, \(uid)")
-//                completion(true)
-//            }
         }
     }
 }
