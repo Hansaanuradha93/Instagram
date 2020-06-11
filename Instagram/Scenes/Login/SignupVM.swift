@@ -40,25 +40,32 @@ class SignupVM {
                     guard let downloadUrl = url?.absoluteString else { return }
                     print("Image uploaded successfully, \(downloadUrl)")
                     
-                    let usernameValues = [
+                    let userDate = [
                         "username": email,
                         "imageUrl": downloadUrl
                     ]
-                    let values = [uid: usernameValues]
                     
-                    Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
-
-                        if let error = error {
-                            print("Failed to save user data, \(error)")
-                            completion(false)
-                            return
-                        }
-
-                        print("Successfully saved user, \(uid)")
-                        completion(true)
-                    }
+                    completion(self.save(uid: uid, userDate: userDate))
                 }
             }
         }
+    }
+    
+    fileprivate func save(uid: String, userDate: [String : String]) -> Bool {
+        
+        let values = [uid: userDate]
+        var result: Bool = false
+        
+        Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
+
+            if let error = error {
+                print("Failed to save user data, \(error)")
+                result = false
+            } else {
+                print("Successfully saved user, \(uid)")
+                result = true
+            }
+        }
+        return result
     }
 }
