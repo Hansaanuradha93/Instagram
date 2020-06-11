@@ -18,37 +18,52 @@ class SignupVM {
                 return
             }
             
-            guard let image = image,
-            let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
+            let user = User(uid: uid, username: email, profileImageUrl: "")
+            completion(self.upload(profileImage: image, of: user))
             
-            let storageRef = Storage.storage().reference().child("profile_image/\(uid)")
+        }
+    }
+    
+    
+    fileprivate func upload(profileImage: UIImage?, of user: User) -> Bool {
         
-            storageRef.putData(uploadData, metadata: nil) { (metaData, error) in
+        var result: Bool = false
+        
+        guard let image = profileImage,
+        let uploadData = image.jpegData(compressionQuality: 0.3) else { return result }
+        
+        let storageRef = Storage.storage().reference().child("profile_image/\(user.uid)")
+        
+        storageRef.putData(uploadData, metadata: nil) { (metaData, error) in
+            
+            if let error = error {
+                print("Image upload failed, \(error)")
+                result = false
                 
-                if let error = error {
-                    print("Image upload failed, \(error)")
-                    return
-                }
-                
+            } else {
                 storageRef.downloadURL { (url, error) in
                     
                     if let error = error {
                         print("Image download url not recieved,\(error)")
-                        return
+                        result = false
+                    } else {
+                        guard let downloadUrl = url?.absoluteString else {
+                            result = false
+                            return
+                        }
+                        
+                        print("Image uploaded successfully, \(downloadUrl)")
+                        
+                        let userDate = [
+                            "username": user.username,
+                            "imageUrl": downloadUrl
+                        ]
+                        result = (self.save(uid: user.uid, userDate: userDate))
                     }
-                    
-                    guard let downloadUrl = url?.absoluteString else { return }
-                    print("Image uploaded successfully, \(downloadUrl)")
-                    
-                    let userDate = [
-                        "username": email,
-                        "imageUrl": downloadUrl
-                    ]
-                    
-                    completion(self.save(uid: uid, userDate: userDate))
                 }
             }
         }
+        return result
     }
     
     fileprivate func save(uid: String, userDate: [String : String]) -> Bool {
