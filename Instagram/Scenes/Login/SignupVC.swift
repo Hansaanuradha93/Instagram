@@ -85,9 +85,10 @@ extension SignupVC {
         
         viewModel.signInWith(email: email, password: password, image: plusPhotoButton.imageView?.image) { status in
             if status {
-                // User signed in
+                print("Status: \(status)")
             } else {
                 // Error signed in
+                print("Status: \(status)")
             }
         }
     }

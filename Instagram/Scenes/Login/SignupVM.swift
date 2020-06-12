@@ -19,18 +19,19 @@ class SignupVM {
             }
             
             let user = User(uid: uid, username: email, profileImageUrl: "")
-            completion(self.upload(profileImage: image, of: user))
+            self.upload(profileImage: image, of: user, completion: completion)
             
         }
     }
     
     
-    fileprivate func upload(profileImage: UIImage?, of user: User) -> Bool {
-        
-        var result: Bool = false
-        
+    fileprivate func upload(profileImage: UIImage?, of user: User, completion: @escaping(_ status: Bool) -> Void) {
+                
         guard let image = profileImage,
-        let uploadData = image.jpegData(compressionQuality: 0.3) else { return result }
+        let uploadData = image.jpegData(compressionQuality: 0.3) else {
+            completion(false)
+            return
+        }
         
         let storageRef = Storage.storage().reference().child("profile_image/\(user.uid)")
         
@@ -38,17 +39,17 @@ class SignupVM {
             
             if let error = error {
                 print("Image upload failed, \(error)")
-                result = false
+                completion(false)
                 
             } else {
                 storageRef.downloadURL { (url, error) in
                     
                     if let error = error {
                         print("Image download url not recieved,\(error)")
-                        result = false
+                        completion(false)
                     } else {
                         guard let downloadUrl = url?.absoluteString else {
-                            result = false
+                            completion(false)
                             return
                         }
                         
@@ -58,29 +59,26 @@ class SignupVM {
                             "username": user.username,
                             "imageUrl": downloadUrl
                         ]
-                        result = (self.save(uid: user.uid, userDate: userDate))
+                        self.save(uid: user.uid, userDate: userDate, completion: completion)
                     }
                 }
             }
         }
-        return result
     }
     
-    fileprivate func save(uid: String, userDate: [String : String]) -> Bool {
+    fileprivate func save(uid: String, userDate: [String : String], completion: @escaping(_ status: Bool) -> Void) {
         
         let values = [uid: userDate]
-        var result: Bool = false
         
         Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
 
             if let error = error {
                 print("Failed to save user data, \(error)")
-                result = false
+                completion(false)
             } else {
                 print("Successfully saved user, \(uid)")
-                result = true
+                completion(true)
             }
         }
-        return result
     }
 }
