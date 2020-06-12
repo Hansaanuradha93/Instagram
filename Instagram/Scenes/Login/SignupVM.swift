@@ -20,7 +20,6 @@ class SignupVM {
             
             let user = User(uid: uid, username: email, profileImageUrl: "")
             self.upload(profileImage: image, of: user, completion: completion)
-
         }
     }
     
@@ -44,12 +43,8 @@ class SignupVM {
             } else {
                 
                 let downloadUrl = self.getDownloadUrl(storageReference: storageRef, completion: completion)
-                
-                let userDate = [
-                    "username": user.username,
-                    "imageUrl": downloadUrl
-                ]
-                self.save(uid: user.uid, userDate: userDate, completion: completion)
+                let newUser = User(uid: user.uid, username: user.username, profileImageUrl: downloadUrl)
+                self.save(user: newUser, completion: completion)
             }
         }
     }
@@ -78,9 +73,14 @@ class SignupVM {
     }
     
     
-    fileprivate func save(uid: String, userDate: [String : String], completion: @escaping(_ status: Bool) -> Void) {
+    fileprivate func save(user: User, completion: @escaping(_ status: Bool) -> Void) {
         
-        let values = [uid: userDate]
+        let userData = [
+            "username": user.username,
+            "imageUrl": user.profileImageUrl
+        ]
+        let uid = user.uid
+        let values = [uid: userData]
         
         Database.database().reference().child("users").updateChildValues(values) { (error, ref) in
 
