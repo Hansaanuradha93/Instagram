@@ -20,7 +20,7 @@ class SignupVM {
             
             let user = User(uid: uid, username: email, profileImageUrl: "")
             self.upload(profileImage: image, of: user, completion: completion)
-            
+
         }
     }
     
@@ -38,33 +38,45 @@ class SignupVM {
         storageRef.putData(uploadData, metadata: nil) { (metaData, error) in
             
             if let error = error {
-                print("Image upload failed, \(error)")
+                print("Profile image upload failed, \(error)")
                 completion(false)
                 
             } else {
-                storageRef.downloadURL { (url, error) in
-                    
-                    if let error = error {
-                        print("Image download url not recieved,\(error)")
-                        completion(false)
-                    } else {
-                        guard let downloadUrl = url?.absoluteString else {
-                            completion(false)
-                            return
-                        }
-                        
-                        print("Image uploaded successfully, \(downloadUrl)")
-                        
-                        let userDate = [
-                            "username": user.username,
-                            "imageUrl": downloadUrl
-                        ]
-                        self.save(uid: user.uid, userDate: userDate, completion: completion)
-                    }
-                }
+                
+                let downloadUrl = self.getDownloadUrl(storageReference: storageRef, completion: completion)
+                
+                let userDate = [
+                    "username": user.username,
+                    "imageUrl": downloadUrl
+                ]
+                self.save(uid: user.uid, userDate: userDate, completion: completion)
             }
         }
     }
+    
+    
+    fileprivate func getDownloadUrl(storageReference: StorageReference, completion: @escaping(_ status: Bool) -> Void) -> String {
+        
+        var profileImageUrl: String = ""
+        
+        storageReference.downloadURL { (url, error) in
+            
+            if let error = error {
+                print("Profile image download url not recieved,\(error)")
+                completion(false)
+            } else {
+                guard let downloadUrl = url?.absoluteString else {
+                    completion(false)
+                    return
+                }
+                
+                print("Profile image uploaded successfully, \(downloadUrl)")
+                profileImageUrl = downloadUrl
+            }
+        }
+        return profileImageUrl
+    }
+    
     
     fileprivate func save(uid: String, userDate: [String : String], completion: @escaping(_ status: Bool) -> Void) {
         
