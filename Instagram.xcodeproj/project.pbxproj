@@ -19,6 +19,7 @@
 		47CC4240248E9AC4008266E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC423F248E9AC4008266E6 /* SceneDelegate.swift */; };
 		47CC4247248E9AC5008266E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47CC4246248E9AC5008266E6 /* Assets.xcassets */; };
 		47CC424A248E9AC5008266E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47CC4248248E9AC5008266E6 /* LaunchScreen.storyboard */; };
+		47F38BF524953D5500E0CEFD /* IGTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F38BF424953D5500E0CEFD /* IGTabBar.swift */; };
 		964D21FF70789103A6FC9EAD /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8F061CC676FBB6A87017FD /* Pods_Instagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		47CC4246248E9AC5008266E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47CC4249248E9AC5008266E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47CC424B248E9AC5008266E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47F38BF424953D5500E0CEFD /* IGTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTabBar.swift; sourceTree = "<group>"; };
 		9F8F061CC676FBB6A87017FD /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,7 +67,8 @@
 		4755888A248F3D0C00CA7486 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				4755888C248F3D6600CA7486 /* Login */,
+				47F38BF224953CD600E0CEFD /* Main Scene */,
+				4755888C248F3D6600CA7486 /* Login Scene */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -83,13 +86,13 @@
 			name = "Support Files";
 			sourceTree = "<group>";
 		};
-		4755888C248F3D6600CA7486 /* Login */ = {
+		4755888C248F3D6600CA7486 /* Login Scene */ = {
 			isa = PBXGroup;
 			children = (
 				4755888D248F3DF000CA7486 /* SignupVC.swift */,
 				4755888F248F3EB200CA7486 /* SignupVM.swift */,
 			);
-			path = Login;
+			path = "Login Scene";
 			sourceTree = "<group>";
 		};
 		47558891248FA35700CA7486 /* Extensions */ = {
@@ -104,6 +107,7 @@
 		47C7B1AC248FEFBC008B8B74 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				47F38BF324953D3B00E0CEFD /* Tab Bar */,
 				47C7B1B0248FF276008B8B74 /* Buttons */,
 				47C7B1AF248FF25F008B8B74 /* Text Fields */,
 			);
@@ -154,6 +158,21 @@
 				4755888B248F3D1C00CA7486 /* Support Files */,
 			);
 			path = Instagram;
+			sourceTree = "<group>";
+		};
+		47F38BF224953CD600E0CEFD /* Main Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Main Scene";
+			sourceTree = "<group>";
+		};
+		47F38BF324953D3B00E0CEFD /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				47F38BF424953D5500E0CEFD /* IGTabBar.swift */,
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		B04AFC9324A7FAC88E9A5A8C /* Pods */ = {
@@ -289,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47C7B1AE248FEFEE008B8B74 /* IGTextField.swift in Sources */,
+				47F38BF524953D5500E0CEFD /* IGTabBar.swift in Sources */,
 				47558895248FA79D00CA7486 /* UIView+Extensions.swift in Sources */,
 				4755888E248F3DF000CA7486 /* SignupVC.swift in Sources */,
 				47558893248FA5B600CA7486 /* UIColor+Extensions.swift in Sources */,
