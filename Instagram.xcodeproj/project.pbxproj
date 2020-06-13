@@ -65,7 +65,6 @@
 		4755888A248F3D0C00CA7486 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				47242D2A2492A255002DB2F1 /* Model */,
 				4755888C248F3D6600CA7486 /* Login */,
 			);
 			path = Scenes;
@@ -148,6 +147,7 @@
 		47CC423C248E9AC4008266E6 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				47242D2A2492A255002DB2F1 /* Model */,
 				4755888A248F3D0C00CA7486 /* Scenes */,
 				47C7B1AC248FEFBC008B8B74 /* Custom Views */,
 				47558891248FA35700CA7486 /* Extensions */,
