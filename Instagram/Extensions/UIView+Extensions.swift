@@ -44,7 +44,7 @@ extension UIView {
         }
     }
     
-    func activityStartAnimating() {
+    func showPreloader() {
         
         let backgroundView = UIView()
         backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
@@ -67,7 +67,7 @@ extension UIView {
         self.isUserInteractionEnabled = false
     }
 
-    func activityStopAnimating() {
+    func hidePreloader() {
         if let background = viewWithTag(475647){
             background.removeFromSuperview()
         }

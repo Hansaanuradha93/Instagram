@@ -31,9 +31,11 @@ extension ProfileVC {
     
     fileprivate func fetchUserData() {
         
+        view.showPreloader()
         viewModel.fetchUserData { [weak self] status in
+            guard let self = self else { return }
+            self.view.hidePreloader()
             if status {
-                guard  let self = self else { return }
                 self.navigationItem.title = self.viewModel.user?.username ?? ""
             }
         }

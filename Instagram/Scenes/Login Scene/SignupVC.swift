@@ -84,7 +84,10 @@ extension SignupVC {
     
     fileprivate func signInWith(user: User, password: String, profileImage: UIImage?) {
         
-        viewModel.signInWith(user: user, password: password, image: profileImage) { status in
+        view.hidePreloader()
+        viewModel.signInWith(user: user, password: password, image: profileImage) { [weak self] status in
+            guard let self = self else { return }
+            self.view.hidePreloader()
             if status {
                 print("Status: \(status)")
             } else {
