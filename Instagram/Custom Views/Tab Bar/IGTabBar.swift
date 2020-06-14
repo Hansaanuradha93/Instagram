@@ -24,7 +24,7 @@ extension IGTabBar {
     
     private func createProfileNC() -> UINavigationController {
         
-        let profileVC = ProfileVC.create(viewModel: ProfileVC())
+        let profileVC = ProfileVC.create(viewModel: ProfileVM())
         profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"))
         return UINavigationController(rootViewController: profileVC)
     }

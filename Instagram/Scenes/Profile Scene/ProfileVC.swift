@@ -4,10 +4,10 @@ import Firebase
 class ProfileVC: UICollectionViewController {
 
     // MARK: Properties
-    var viewModel: ProfileVC!
+    var viewModel: ProfileVM!
     
     
-    static func create(viewModel: ProfileVC) -> ProfileVC {
+    static func create(viewModel: ProfileVM) -> ProfileVC {
         let layout = UICollectionViewFlowLayout()
         let viewController = ProfileVC(collectionViewLayout: layout)
         viewController.viewModel = viewModel
@@ -17,21 +17,18 @@ class ProfileVC: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
-        navigationItem.title = Auth.auth().currentUser?.email
-        
+        collectionView.backgroundColor = .white        
         fetchUserData()
     }
     
     
     fileprivate func fetchUserData() {
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let userRef = Database.database().reference().child("users").child(uid)
-        
-        userRef.observeSingleEvent(of: DataEventType.value, with: { [weak self] snapshot in
-            let user = User(snapshot: snapshot)
-            print(user)
-        })
+        viewModel.fetchUserData { [weak self] status in
+            if status {
+                guard  let self = self else { return }
+                self.navigationItem.title = self.viewModel.user?.username ?? ""
+            }
+        }
     }
 }
