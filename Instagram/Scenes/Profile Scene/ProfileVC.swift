@@ -30,8 +30,8 @@ class ProfileVC: UICollectionViewController {
         let userRef = Database.database().reference().child("users").child(uid)
         
         userRef.observe(DataEventType.value, with: { (snapshot) in
-          let userDict = snapshot.value as? [String : AnyObject] ?? [:]
-          print(userDict)
+            let user = User(snapshot: snapshot)
+            print(user)
         })
     }
 }
