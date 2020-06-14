@@ -3,9 +3,9 @@ import Firebase
 
 class SignupVM {
     
-    func signInWith(email: String, password: String, image: UIImage?, completion: @escaping(_ status: Bool) -> Void) {
+    func signInWith(user: User, password: String, image: UIImage?, completion: @escaping(_ status: Bool) -> Void) {
         
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        Auth.auth().createUser(withEmail: user.email, password: password) { authResult, error in
             
             if let error = error {
                 print("Authentication failed with error: \(error)")
@@ -18,8 +18,8 @@ class SignupVM {
                 return
             }
             
-            let user = User(uid: uid, username: email, profileImageUrl: "")
-            self.upload(profileImage: image, of: user, completion: completion)
+            let newUser = User(uid: uid, email: user.email, username: user.username, profileImageUrl: user.profileImageUrl)
+            self.upload(profileImage: image, of: newUser, completion: completion)
         }
     }
     
@@ -43,7 +43,7 @@ class SignupVM {
             } else {
                 
                 let downloadUrl = self.getDownloadUrl(storageReference: storageRef, completion: completion)
-                let newUser = User(uid: user.uid, username: user.username, profileImageUrl: downloadUrl)
+                let newUser = User(uid: user.uid, email: user.email, username: user.username, profileImageUrl: downloadUrl)
                 self.save(user: newUser, completion: completion)
             }
         }
@@ -65,8 +65,8 @@ class SignupVM {
                     return
                 }
                 
-                print("Profile image uploaded successfully, \(downloadUrl)")
                 profileImageUrl = downloadUrl
+                print("Profile image uploaded successfully, \(downloadUrl)")
             }
         }
         return profileImageUrl
@@ -76,6 +76,7 @@ class SignupVM {
     fileprivate func save(user: User, completion: @escaping(_ status: Bool) -> Void) {
         
         let userData = [
+            "email": user.email,
             "username": user.username,
             "imageUrl": user.profileImageUrl
         ]

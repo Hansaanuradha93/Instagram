@@ -62,7 +62,8 @@ extension SignupVC {
             let password = passwordTextField.text, !password.isEmpty
             else { return }
         
-        signInWith(email: email, password: password)
+        let user = User(uid: "", email: email, username: username, profileImageUrl: "")
+        signInWith(user: user, password: password, profileImage: plusPhotoButton.imageView?.image)
     }
     
     
@@ -81,9 +82,9 @@ extension SignupVC {
     }
     
     
-    fileprivate func signInWith(email: String, password: String) {
+    fileprivate func signInWith(user: User, password: String, profileImage: UIImage?) {
         
-        viewModel.signInWith(email: email, password: password, image: plusPhotoButton.imageView?.image) { status in
+        viewModel.signInWith(user: user, password: password, image: profileImage) { status in
             if status {
                 print("Status: \(status)")
             } else {
