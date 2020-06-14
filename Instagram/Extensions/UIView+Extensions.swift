@@ -43,4 +43,34 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
+    
+    func activityStartAnimating() {
+        
+        let backgroundView = UIView()
+        backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+        backgroundView.backgroundColor = .white
+        backgroundView.alpha = 0.3
+        backgroundView.tag = 475647
+        addSubview(backgroundView)
+        
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        backgroundView.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
+        ])
+        
+        self.isUserInteractionEnabled = false
+    }
+
+    func activityStopAnimating() {
+        if let background = viewWithTag(475647){
+            background.removeFromSuperview()
+        }
+        self.isUserInteractionEnabled = true
+    }
 }
