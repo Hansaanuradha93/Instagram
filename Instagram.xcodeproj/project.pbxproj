@@ -12,6 +12,8 @@
 		47558890248F3EB200CA7486 /* SignupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755888F248F3EB200CA7486 /* SignupVM.swift */; };
 		47558893248FA5B600CA7486 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47558892248FA5B600CA7486 /* UIColor+Extensions.swift */; };
 		47558895248FA79D00CA7486 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47558894248FA79D00CA7486 /* UIView+Extensions.swift */; };
+		4784C0912496098500551378 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784C0902496098500551378 /* HomeVC.swift */; };
+		4784C093249609A400551378 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784C092249609A400551378 /* HomeVM.swift */; };
 		47C24159249090B300C2F149 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C24158249090B300C2F149 /* GoogleService-Info.plist */; };
 		47C7B1AE248FEFEE008B8B74 /* IGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C7B1AD248FEFEE008B8B74 /* IGTextField.swift */; };
 		47C7B1B2248FF291008B8B74 /* IGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C7B1B1248FF291008B8B74 /* IGButton.swift */; };
@@ -32,6 +34,8 @@
 		4755888F248F3EB200CA7486 /* SignupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVM.swift; sourceTree = "<group>"; };
 		47558892248FA5B600CA7486 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		47558894248FA79D00CA7486 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		4784C0902496098500551378 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		4784C092249609A400551378 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		47955CEA2BF4282BA9D5BE03 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		47C24158249090B300C2F149 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47C7B1AD248FEFEE008B8B74 /* IGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTextField.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		4784C08F2495E78300551378 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				4784C0902496098500551378 /* HomeVC.swift */,
+				4784C092249609A400551378 /* HomeVM.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -328,11 +334,13 @@
 				47F38BF724953E3700E0CEFD /* ProfileVC.swift in Sources */,
 				47558893248FA5B600CA7486 /* UIColor+Extensions.swift in Sources */,
 				47CC423E248E9AC4008266E6 /* AppDelegate.swift in Sources */,
+				4784C093249609A400551378 /* HomeVM.swift in Sources */,
 				47F38BF924953E5300E0CEFD /* ProfileVM.swift in Sources */,
 				47242D2C2492A263002DB2F1 /* User.swift in Sources */,
 				47C7B1B2248FF291008B8B74 /* IGButton.swift in Sources */,
 				47558890248F3EB200CA7486 /* SignupVM.swift in Sources */,
 				47CC4240248E9AC4008266E6 /* SceneDelegate.swift in Sources */,
+				4784C0912496098500551378 /* HomeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

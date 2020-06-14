@@ -3,10 +3,10 @@ import UIKit
 class HomeVC: UIViewController {
 
     // MARK: Properties
-    var viewModel: MainVM!
+    var viewModel: HomeVM!
     
     
-    static func create(viewModel: MainVM) -> HomeVC {
+    static func create(viewModel: HomeVM) -> HomeVC {
         let viewController = HomeVC()
         viewController.viewModel = viewModel
         return viewController
