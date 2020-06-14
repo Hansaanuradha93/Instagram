@@ -71,6 +71,7 @@
 		4755888A248F3D0C00CA7486 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4784C08F2495E78300551378 /* New Group */,
 				47F38BF224953CD600E0CEFD /* Profile Scene */,
 				4755888C248F3D6600CA7486 /* Login Scene */,
 			);
@@ -106,6 +107,13 @@
 				47558894248FA79D00CA7486 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4784C08F2495E78300551378 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		47C7B1AC248FEFBC008B8B74 /* Custom Views */ = {

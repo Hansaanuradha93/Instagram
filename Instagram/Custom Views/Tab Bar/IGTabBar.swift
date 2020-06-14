@@ -6,7 +6,7 @@ class IGTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .black
-        viewControllers = [createProfileNC()]
+        viewControllers = [createMainNC(), createProfileNC()]
     }
 }
 
@@ -17,8 +17,14 @@ extension IGTabBar {
     private func createProfileNC() -> UINavigationController {
         
         let profileVC = ProfileVC.create(viewModel: ProfileVC())
-        profileVC.title = "Profile"
-        profileVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"))
+        return UINavigationController(rootViewController: profileVC)
+    }
+    
+    private func createMainNC() -> UINavigationController {
+        
+        let profileVC = UIViewController()
+//        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"))
         return UINavigationController(rootViewController: profileVC)
     }
 }
