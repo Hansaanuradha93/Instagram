@@ -3,15 +3,19 @@ import Firebase
 
 struct User {
     
+    // MARK: Properties
     let uid: String
     let username: String
     let profileImageUrl: String
     
+    
+    // MARK: Initializers
     init(uid: String, username: String, profileImageUrl: String) {
         self.uid = uid
         self.username = username
         self.profileImageUrl = profileImageUrl
     }
+    
     
     init(snapshot: DataSnapshot) {
         let userDict = snapshot.value as? [String : AnyObject] ?? [:]
