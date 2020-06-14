@@ -39,21 +39,15 @@ class SignupVM {
             if let error = error {
                 print("Profile image upload failed, \(error)")
                 completion(false)
-                
             } else {
-                
-                let downloadUrl = self.getDownloadUrl(storageReference: storageRef, completion: completion)
-                let newUser = User(uid: user.uid, email: user.email, username: user.username, profileImageUrl: downloadUrl)
-                self.save(user: newUser, completion: completion)
+                self.getDownloadUrl(storageReference: storageRef, user: user, completion: completion)
             }
         }
     }
     
     
-    fileprivate func getDownloadUrl(storageReference: StorageReference, completion: @escaping(_ status: Bool) -> Void) -> String {
-        
-        var profileImageUrl: String = ""
-        
+    fileprivate func getDownloadUrl(storageReference: StorageReference, user: User, completion: @escaping(_ status: Bool) -> Void) {
+                
         storageReference.downloadURL { (url, error) in
             
             if let error = error {
@@ -65,11 +59,11 @@ class SignupVM {
                     return
                 }
                 
-                profileImageUrl = downloadUrl
                 print("Profile image uploaded successfully, \(downloadUrl)")
+                let newUser = User(uid: user.uid, email: user.email, username: user.username, profileImageUrl: downloadUrl)
+                self.save(user: newUser, completion: completion)
             }
         }
-        return profileImageUrl
     }
     
     
