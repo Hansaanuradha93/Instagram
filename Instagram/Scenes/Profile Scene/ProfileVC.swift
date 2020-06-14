@@ -17,9 +17,16 @@ class ProfileVC: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white        
+        configureViewController()
         fetchUserData()
     }
+}
+
+
+// MARK: - Methods
+extension ProfileVC {
+    
+    fileprivate func configureViewController() { collectionView.backgroundColor = .white }
     
     
     fileprivate func fetchUserData() {
