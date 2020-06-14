@@ -29,7 +29,7 @@ class ProfileVC: UICollectionViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let userRef = Database.database().reference().child("users").child(uid)
         
-        userRef.observe(DataEventType.value, with: { (snapshot) in
+        userRef.observeSingleEvent(of: DataEventType.value, with: { [weak self] snapshot in
             let user = User(snapshot: snapshot)
             print(user)
         })
