@@ -8,3 +8,8 @@ enum Asserts {
     static let profileUnselected = UIImage(named: "profile_unselected")
 
 }
+
+
+enum Strings {
+    static let empty = ""
+}
