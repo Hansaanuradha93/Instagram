@@ -3,7 +3,13 @@ import Firebase
 
 class ProfileVM {
     
+    // MARK: Properties
     var user: User?
+}
+
+
+// MARK: - Methods
+extension ProfileVM {
     
     func fetchUserData(completion: @escaping(_ status: Bool) -> Void) {
        

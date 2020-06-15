@@ -15,6 +15,7 @@ class ProfileVC: UICollectionViewController {
     }
     
     
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -36,7 +37,7 @@ extension ProfileVC {
             guard let self = self else { return }
             self.view.hidePreloader()
             if status {
-                self.navigationItem.title = self.viewModel.user?.username ?? ""
+                self.navigationItem.title = self.viewModel.user?.username ?? Strings.empty
             }
         }
     }
