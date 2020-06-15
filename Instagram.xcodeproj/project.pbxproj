@@ -77,7 +77,7 @@
 		4755888A248F3D0C00CA7486 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				4784C08F2495E78300551378 /* New Group */,
+				4784C08F2495E78300551378 /* Home Scene */,
 				47F38BF224953CD600E0CEFD /* Profile Scene */,
 				4755888C248F3D6600CA7486 /* Login Scene */,
 			);
@@ -115,13 +115,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4784C08F2495E78300551378 /* New Group */ = {
+		4784C08F2495E78300551378 /* Home Scene */ = {
 			isa = PBXGroup;
 			children = (
 				4784C0902496098500551378 /* HomeVC.swift */,
 				4784C092249609A400551378 /* HomeVM.swift */,
 			);
-			path = "New Group";
+			path = "Home Scene";
 			sourceTree = "<group>";
 		};
 		47B9BF3A2497D764006E217D /* Constants */ = {
