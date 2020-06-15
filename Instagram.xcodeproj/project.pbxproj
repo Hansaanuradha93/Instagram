@@ -182,11 +182,11 @@
 		47CC423C248E9AC4008266E6 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				47B9BF3A2497D764006E217D /* Constants */,
 				47242D2A2492A255002DB2F1 /* Model */,
 				4755888A248F3D0C00CA7486 /* Scenes */,
 				47C7B1AC248FEFBC008B8B74 /* Custom Views */,
 				47558891248FA35700CA7486 /* Extensions */,
+				47B9BF3A2497D764006E217D /* Constants */,
 				4755888B248F3D1C00CA7486 /* Support Files */,
 			);
 			path = Instagram;
