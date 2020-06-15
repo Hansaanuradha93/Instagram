@@ -17,7 +17,7 @@ extension IGTabBar {
     private func createHomeNC() -> UINavigationController {
         
         let homeVC = HomeVC.create(viewModel: HomeVM())
-        homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home_unselected"), selectedImage: UIImage(named: "home_selected"))
+        homeVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.homeUnselected, selectedImage: Asserts.homeSelected)
         return UINavigationController(rootViewController: homeVC)
     }
     
@@ -25,7 +25,7 @@ extension IGTabBar {
     private func createProfileNC() -> UINavigationController {
         
         let profileVC = ProfileVC.create(viewModel: ProfileVM())
-        profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"))
+        profileVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.profileUnselected, selectedImage: Asserts.profileSelected)
         return UINavigationController(rootViewController: profileVC)
     }
 }
