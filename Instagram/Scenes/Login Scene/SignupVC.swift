@@ -14,11 +14,11 @@ class SignupVC: UIViewController {
     }
     
     
-    let plusPhotoButton = IGButton(backgroundColor: .white, title: "", image: #imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal))
-    let emailTextField = IGTextField(placeholder: "Email")
-    let usernameTextField = IGTextField(placeholder: "Username")
-    let passwordTextField = IGTextField(placeholder: "Password", isSecureTextEntry: true)
-    let signupButton = IGButton(backgroundColor: UIColor.appColor(.lightBlue), title: "Sign Up", isEnabled: false)
+    let plusPhotoButton = IGButton(backgroundColor: .white, title: Strings.empty, image: Asserts.plusPhoto.withRenderingMode(.alwaysOriginal))
+    let emailTextField = IGTextField(placeholder: Strings.email)
+    let usernameTextField = IGTextField(placeholder: Strings.username)
+    let passwordTextField = IGTextField(placeholder: Strings.password, isSecureTextEntry: true)
+    let signupButton = IGButton(backgroundColor: UIColor.appColor(.lightBlue), title: Strings.signUp, isEnabled: false)
     
     
     // MARK: View Controller
@@ -62,7 +62,7 @@ extension SignupVC {
             let password = passwordTextField.text, !password.isEmpty
             else { return }
         
-        let user = User(uid: "", email: email, username: username, profileImageUrl: "")
+        let user = User(uid: Strings.empty, email: email, username: username, profileImageUrl: Strings.empty)
         signInWith(user: user, password: password, profileImage: plusPhotoButton.imageView?.image)
     }
     
@@ -136,9 +136,9 @@ extension SignupVC: UIImagePickerControllerDelegate & UINavigationControllerDele
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
             plusPhotoButton.setImage(editedImage, for: .normal)
-        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage {
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
             plusPhotoButton.setImage(originalImage, for: .normal)
         }
         dismiss(animated: true, completion: nil)
