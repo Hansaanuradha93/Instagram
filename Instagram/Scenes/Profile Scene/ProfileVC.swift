@@ -37,7 +37,7 @@ extension ProfileVC {
             guard let self = self else { return }
             self.view.hidePreloader()
             if status {
-                self.navigationItem.title = self.viewModel.user?.username ?? Strings.empty
+                DispatchQueue.main.async { self.navigationItem.title = self.viewModel.user?.username ?? Strings.empty }
             }
         }
     }
