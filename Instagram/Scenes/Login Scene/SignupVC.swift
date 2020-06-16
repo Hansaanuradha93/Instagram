@@ -43,7 +43,7 @@ extension SignupVC {
         
         let isFormValid = emailTextField.text?.count ?? 0 > 0 &&
             usernameTextField.text?.count ?? 0 > 0 &&
-            passwordTextField.text?.count ?? 0 > 0
+            passwordTextField.text?.count ?? 0 >=  6
         
         if isFormValid {
             signupButton.isEnabled = true
